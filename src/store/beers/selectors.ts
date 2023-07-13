@@ -8,7 +8,11 @@ export const selectError = (state: BeersState) => state.error;
 
 export const selectDetails = (state: BeersState) => state.details;
 
+export const selectSelectedBeers = (state: BeersState) => state.selectedBeers;
+
 export const selectToggleBeer = (state: BeersState) => state.toggleBeer;
+
+export const selectDeleteSelectedBeers = (state: BeersState) => state.deleteSelectedBeers;
 
 export const selectGetBeers = (state: BeersState) => state.getBeers;
 

@@ -13,6 +13,8 @@ const BeerDetails: FC = () => {
 
   useEffect(() => {
     getBeerById(id);
+
+    window.scrollTo(0, 0);
   }, [id]);
 
   return (

@@ -11,8 +11,9 @@ export interface BeersState {
   isLoading: boolean;
   error: string | null;
   details: Details | null;
-  selectedBeers: string[];
-  toggleBeer: (id: string) => void;
+  selectedBeers: number[];
+  toggleBeer: (id: number) => void;
+  deleteSelectedBeers: () => void;
   getBeers: () => void;
   getBeerById: (id: string) => void;
 }
@@ -29,6 +30,12 @@ export const useBeersStore = create<BeersState>()(
         selectedBeers: state.selectedBeers.includes(id)
           ? state.selectedBeers.filter(beer => beer !== id)
           : [id, ...state.selectedBeers],
+      }));
+    },
+    deleteSelectedBeers: () => {
+      set(state => ({
+        beers: state.beers.filter(({ id }) => !state.selectedBeers.includes(id)),
+        selectedBeers: [],
       }));
     },
     getBeers: async () => {
