@@ -1,0 +1,9 @@
+.beers {
+  padding: 48px 0;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+}

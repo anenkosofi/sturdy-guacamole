@@ -1,0 +1,232 @@
+@import '@styles/shared.scss';
+
+.beer {
+  padding: 48px 0;
+
+  &__container {
+    display: flex;
+    gap: 48px;
+  }
+
+  &__thumb {
+    position: sticky;
+    top: 48px;
+    left: 0;
+    flex-shrink: 0;
+    width: 200px;
+    height: 768px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__heading {
+    position: relative;
+    margin-bottom: 48px;
+    font-family: $secondary-font-stack;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    text-align: center;
+    color: $primary-dark;
+
+    &::after {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      content: '';
+      width: 50px;
+      height: 1px;
+      background-color: $primary-dark;
+    }
+  }
+
+  &__tag {
+    margin-bottom: 24px;
+    padding: 8px 12px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    color: $primary-cyan;
+  }
+
+  &__brewed {
+    display: inline-block;
+    margin-bottom: 24px;
+    padding: 4px 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    background-color: rgba(255, 184, 0, 0.4);
+    border: 1px solid $primary-yellow;
+    border-radius: 6px;
+  }
+
+  &__description {
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.33;
+  }
+
+  &__properties {
+    display: grid;
+    grid-template-columns: repeat(2, 460px);
+    column-gap: 32px;
+    row-gap: 12px;
+    margin-bottom: 24px;
+
+    li {
+      display: grid;
+      grid-template-columns: repeat(2, 230px);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.33;
+      word-break: break-word;
+
+      span {
+        &:first-child {
+          color: $secondary-dark;
+        }
+      }
+    }
+  }
+
+  &__preparation {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  &__food,
+  &__method,
+  &__ingredients {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__post-heading {
+    font-family: $secondary-font-stack;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  &__food-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.33;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  &__method-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    > li {
+      display: grid;
+      grid-template-columns: repeat(2, 240px);
+      gap: 12px;
+    }
+
+    li {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.33;
+      text-transform: capitalize;
+      word-break: break-word;
+
+      div {
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
+
+  &__ingredients-list {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 24px;
+
+    > li {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1;
+
+      > span {
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+
+      > ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    ul > li {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    ul > li > div {
+      display: grid;
+      grid-template-columns: 80px 180px;
+      gap: 12px;
+    }
+  }
+
+  &__tips {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+
+    span {
+      display: inline-block;
+      padding: 4px 8px;
+      background-color: rgba(255, 184, 0, 0.4);
+      border: 1px solid $primary-yellow;
+      border-radius: 6px;
+    }
+  }
+
+  &__contribution {
+    display: flex;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+
+    span {
+      font-weight: 600;
+      color: $primary-cyan;
+    }
+  }
+}

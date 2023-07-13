@@ -15,24 +15,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint",
-    "prettier",
-    "import"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier", "import"],
   "rules": {
     "import/first": "error",
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling", "index"]
-        ],
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
         "newlines-between": "always",
         "alphabetize": { "order": "asc", "caseInsensitive": true }
       }
