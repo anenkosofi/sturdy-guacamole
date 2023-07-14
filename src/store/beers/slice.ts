@@ -76,20 +76,16 @@ export const useBeersStore = create<BeersState>()(
                   startIndex + LIMIT_PER_PAGE - state.visibleBeers.length
                 )
               : state.beers.slice(startIndex, endIndex);
+          const selectedBeers = state.selectedBeers.filter(beerId =>
+            newVisibleBeers.some(beer => beer.id === beerId)
+          );
+
           return {
             visibleBeers:
               state.visibleBeers.length === LIMIT_PER_PAGE
                 ? [...state.visibleBeers.slice(INTERCHANGEABLE_NUMBER), ...newVisibleBeers]
                 : [...state.visibleBeers, ...newVisibleBeers],
-            selectedBeers: [
-              ...state.selectedBeers.filter(beerId => {
-                const visibleBeers =
-                  state.visibleBeers.length === LIMIT_PER_PAGE
-                    ? [...state.visibleBeers.slice(INTERCHANGEABLE_NUMBER), ...newVisibleBeers]
-                    : [...state.visibleBeers, ...newVisibleBeers];
-                return visibleBeers.map(({ id }) => beerId === id);
-              }),
-            ],
+            selectedBeers,
           };
         });
       },
