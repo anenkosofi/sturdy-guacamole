@@ -55,11 +55,14 @@ const BeersList: FC = () => {
   return (
     <div className="beers__container">
       <ul className="beers__list">
-        {Boolean(visibleBeers) &&
+        {visibleBeers ? (
           visibleBeers.map((beer, index) => {
             const lastElement = index === visibleBeers.length - 1;
             return <BeersItem key={beer.id} beer={beer} ref={lastElement ? ref : null} />;
-          })}
+          })
+        ) : (
+          <p>There are not any beers recipes found...</p>
+        )}
       </ul>
     </div>
   );

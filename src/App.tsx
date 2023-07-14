@@ -13,6 +13,7 @@ const App: FC = () => {
       <Route path={Pathname.BEERS} element={<Layout />}>
         <Route index element={<BeersPage />} />
         <Route path={Pathname.BEER_DETAILS} element={<BeerDetailsPage />} />
+        <Route path="*" element={<BeersPage />} />
       </Route>
     </Routes>
   );

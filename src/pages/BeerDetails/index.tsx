@@ -3,11 +3,14 @@ import { useParams } from 'react-router-dom';
 
 import AboutBeer from '@components/AboutBeer';
 import Container from '@components/Container';
-import { selectGetBeerById } from '@store/beers/selectors';
+import Loader from '@components/Loader';
+import { selectGetBeerById, selectIsLoading } from '@store/beers/selectors';
 import { useBeersStore } from '@store/beers/slice';
 
 const BeerDetails: FC = () => {
   const { id = '' } = useParams();
+
+  const isLoading = useBeersStore(selectIsLoading);
 
   const getBeerById = useBeersStore(selectGetBeerById);
 
@@ -19,9 +22,7 @@ const BeerDetails: FC = () => {
 
   return (
     <section className="beer">
-      <Container>
-        <AboutBeer />
-      </Container>
+      <Container>{isLoading ? <Loader /> : <AboutBeer />}</Container>
     </section>
   );
 };

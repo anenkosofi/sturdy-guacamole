@@ -3,6 +3,17 @@
 .beer {
   padding: 48px 0;
 
+  &__backlink {
+    margin-bottom: 32px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.33;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &__container {
     display: flex;
     gap: 48px;
@@ -10,7 +21,7 @@
 
   &__thumb {
     position: sticky;
-    top: 48px;
+    top: 112px;
     left: 0;
     flex-shrink: 0;
     width: 200px;

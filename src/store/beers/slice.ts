@@ -6,6 +6,14 @@ import { Beer } from '@types';
 
 axios.defaults.baseURL = 'https://api.punkapi.com/v2/';
 
+const START_INDEX = 0;
+const NEXT_INDEX = 1;
+const INITIAL_PAGE = 1;
+const START_ID = 0;
+const NEXT_ID = 1;
+const LIMIT_PER_PAGE = 15;
+const INTERCHANGEABLE_NUMBER = 5;
+
 export interface BeersState {
   beers: Beer[];
   isLoading: boolean;
@@ -31,9 +39,9 @@ export const useBeersStore = create<BeersState>()(
     error: null,
     details: null,
     selectedBeers: [],
-    lastBeerId: 0,
+    lastBeerId: START_ID,
     visibleBeers: [],
-    page: 1,
+    page: INITIAL_PAGE,
     toggleBeer: id => {
       set(state => ({
         selectedBeers: state.selectedBeers.includes(id)
@@ -56,18 +64,18 @@ export const useBeersStore = create<BeersState>()(
     },
     setVisibleBeers: () => {
       set(state => {
-        const isSequentialIds = state.beers.every((beer, index) => beer.id === index + 1);
+        const isSequentialIds = state.beers.every((beer, index) => beer.id === index + NEXT_ID);
         const lastBeerIndex = state.beers.findIndex(beer => beer.id === state.lastBeerId);
-        const startIndex = lastBeerIndex === -1 ? 0 : lastBeerIndex + 1;
-        const endIndex = startIndex + 5;
+        const startIndex = lastBeerIndex === -1 ? START_INDEX : lastBeerIndex + NEXT_INDEX;
+        const endIndex = startIndex + INTERCHANGEABLE_NUMBER;
         const newVisibleBeers =
-          state.visibleBeers.length < 15 && !isSequentialIds
-            ? state.beers.slice(startIndex, startIndex + 15 - state.visibleBeers.length)
+          state.visibleBeers.length < LIMIT_PER_PAGE && !isSequentialIds
+            ? state.beers.slice(startIndex, startIndex + LIMIT_PER_PAGE - state.visibleBeers.length)
             : state.beers.slice(startIndex, endIndex);
         return {
           visibleBeers:
-            state.visibleBeers.length === 15
-              ? [...state.visibleBeers.slice(5), ...newVisibleBeers]
+            state.visibleBeers.length === LIMIT_PER_PAGE
+              ? [...state.visibleBeers.slice(INTERCHANGEABLE_NUMBER), ...newVisibleBeers]
               : [...state.visibleBeers, ...newVisibleBeers],
         };
       });

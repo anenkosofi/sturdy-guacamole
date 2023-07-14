@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 
-export const Loader: FC = () => {
+const Loader: FC = () => {
   return (
     <ThreeDots
       height="80"
@@ -9,8 +9,10 @@ export const Loader: FC = () => {
       radius="9"
       color="#00a698"
       ariaLabel="three-dots-loading"
-      wrapperStyle={{ justifyContent: 'center' }}
+      wrapperStyle={{ justifyContent: 'center', alignItems: 'center', height: '100vh' }}
       visible
     />
   );
 };
+
+export default Loader;
