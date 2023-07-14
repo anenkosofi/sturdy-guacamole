@@ -26,7 +26,9 @@ const BeersList: FC = () => {
   const setLastBeerId = useBeersStore(selectSetLastBeerId);
 
   useEffect(() => {
-    setVisibleBeers();
+    if (!visibleBeers.length) {
+      setVisibleBeers();
+    }
   }, [beers]);
 
   useEffect(() => {
