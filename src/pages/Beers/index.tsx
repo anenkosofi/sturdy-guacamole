@@ -10,6 +10,7 @@ import {
   selectPage,
   selectSetVisibleBeers,
   selectIsLoading,
+  selectHasHydrated,
 } from '@store/beers/selectors';
 import { useBeersStore } from '@store/beers/slice';
 
@@ -17,14 +18,11 @@ const Beers: FC = () => {
   const selectedBeers = useBeersStore(selectSelectedBeers);
   const page = useBeersStore(selectPage);
   const isLoading = useBeersStore(selectIsLoading);
+  const hasHydrated = useBeersStore(selectHasHydrated);
 
   const getBeers = useBeersStore(selectGetBeers);
   const deleteSelectedBeers = useBeersStore(selectDeleteSelectedBeers);
   const setVisibleBeers = useBeersStore(selectSetVisibleBeers);
-
-  useEffect(() => {
-    useBeersStore.persist.rehydrate();
-  }, []);
 
   useEffect(() => {
     getBeers();
@@ -34,6 +32,10 @@ const Beers: FC = () => {
     deleteSelectedBeers();
     setVisibleBeers();
   };
+
+  if (!hasHydrated) {
+    return <Loader />;
+  }
 
   return (
     <section className="beers">
