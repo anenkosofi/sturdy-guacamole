@@ -23,6 +23,10 @@ const Beers: FC = () => {
   const setVisibleBeers = useBeersStore(selectSetVisibleBeers);
 
   useEffect(() => {
+    useBeersStore.persist.rehydrate();
+  }, []);
+
+  useEffect(() => {
     getBeers();
   }, [page]);
 

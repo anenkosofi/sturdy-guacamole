@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { devtools, persist, createJSONStorage } from 'zustand/middleware';
 
 import { Beer } from '@types';
 
@@ -116,7 +116,8 @@ export const useBeersStore = create<BeersState>()(
       },
     })),
     {
-      name: 'beers',
+      name: 'beers-storage',
+      skipHydration: true,
     }
   )
 );
