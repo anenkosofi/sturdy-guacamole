@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import BeersItem from '@components/BeersItem';
@@ -10,7 +10,6 @@ import {
   selectSetVisibleBeers,
   selectVisibleBeers,
   selectSetLastBeerId,
-  selectIsLoading,
 } from '@store/beers/selectors';
 import { useBeersStore } from '@store/beers/slice';
 
@@ -21,18 +20,13 @@ const BeersList: FC = () => {
   const page = useBeersStore(selectPage);
   const lastBeerId = useBeersStore(selectLastBeerId);
   const visibleBeers = useBeersStore(selectVisibleBeers);
-  const isLoading = useBeersStore(selectIsLoading);
 
   const setPage = useBeersStore(selectSetPage);
   const setVisibleBeers = useBeersStore(selectSetVisibleBeers);
   const setLastBeerId = useBeersStore(selectSetLastBeerId);
 
-  const [isInitialRender, setIsInitialRender] = useState(true);
-
   useEffect(() => {
-    if (isInitialRender && !isLoading && beers.length) {
-      setVisibleBeers();
-    }
+    setVisibleBeers();
   }, [beers]);
 
   useEffect(() => {
@@ -45,7 +39,7 @@ const BeersList: FC = () => {
   const [ref, inView] = useInView(options);
 
   useEffect(() => {
-    if (inView && !isInitialRender) {
+    if (inView) {
       setVisibleBeers();
     }
   }, [inView]);
@@ -55,10 +49,6 @@ const BeersList: FC = () => {
       setPage(page + 1);
     }
   }, [lastBeerId]);
-
-  useEffect(() => {
-    setIsInitialRender(false);
-  }, []);
 
   return (
     <div className="beers__container">
