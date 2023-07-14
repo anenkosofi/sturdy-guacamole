@@ -81,6 +81,15 @@ export const useBeersStore = create<BeersState>()(
               state.visibleBeers.length === LIMIT_PER_PAGE
                 ? [...state.visibleBeers.slice(INTERCHANGEABLE_NUMBER), ...newVisibleBeers]
                 : [...state.visibleBeers, ...newVisibleBeers],
+            selectedBeers: [
+              ...state.selectedBeers.filter(beerId => {
+                const visibleBeers =
+                  state.visibleBeers.length === LIMIT_PER_PAGE
+                    ? [...state.visibleBeers.slice(INTERCHANGEABLE_NUMBER), ...newVisibleBeers]
+                    : [...state.visibleBeers, ...newVisibleBeers];
+                return visibleBeers.map(({ id }) => beerId === id);
+              }),
+            ],
           };
         });
       },
