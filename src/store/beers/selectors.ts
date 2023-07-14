@@ -16,8 +16,6 @@ export const selectLastBeerId = (state: BeersState) => state.lastBeerId;
 
 export const selectVisibleBeers = (state: BeersState) => state.visibleBeers;
 
-export const selectHasHydrated = (state: BeersState) => state._hasHydrated;
-
 export const selectToggleBeer = (state: BeersState) => state.toggleBeer;
 
 export const selectDeleteSelectedBeers = (state: BeersState) => state.deleteSelectedBeers;

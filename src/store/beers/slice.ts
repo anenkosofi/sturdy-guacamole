@@ -23,8 +23,6 @@ export interface BeersState {
   lastBeerId: number;
   visibleBeers: Beer[];
   page: number;
-  _hasHydrated: boolean;
-  setHasHydrated: (state: boolean) => void;
   toggleBeer: (id: number) => void;
   deleteSelectedBeers: () => void;
   setPage: (page: number) => void;
@@ -45,12 +43,6 @@ export const useBeersStore = create<BeersState>()(
       lastBeerId: START_ID,
       visibleBeers: [],
       page: INITIAL_PAGE,
-      _hasHydrated: false,
-      setHasHydrated: state => {
-        set({
-          _hasHydrated: state,
-        });
-      },
       toggleBeer: id => {
         set(state => ({
           selectedBeers: state.selectedBeers.includes(id)
@@ -125,11 +117,6 @@ export const useBeersStore = create<BeersState>()(
     })),
     {
       name: 'beers-storage',
-      onRehydrateStorage: () => state => {
-        if (state) {
-          state.setHasHydrated(true);
-        }
-      },
     }
   )
 );

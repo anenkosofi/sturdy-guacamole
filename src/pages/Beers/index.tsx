@@ -10,7 +10,6 @@ import {
   selectPage,
   selectSetVisibleBeers,
   selectIsLoading,
-  selectHasHydrated,
 } from '@store/beers/selectors';
 import { useBeersStore } from '@store/beers/slice';
 
@@ -18,7 +17,8 @@ const Beers: FC = () => {
   const selectedBeers = useBeersStore(selectSelectedBeers);
   const page = useBeersStore(selectPage);
   const isLoading = useBeersStore(selectIsLoading);
-  const hasHydrated = useBeersStore(selectHasHydrated);
+
+  const hasHydrated = useBeersStore.persist.hasHydrated();
 
   const getBeers = useBeersStore(selectGetBeers);
   const deleteSelectedBeers = useBeersStore(selectDeleteSelectedBeers);
