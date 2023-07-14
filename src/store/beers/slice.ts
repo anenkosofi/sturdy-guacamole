@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import axios from 'axios';
 
 import { Beer } from '@types';
 
@@ -24,7 +24,7 @@ export interface BeersState {
   getBeerById: (id: string) => void;
 }
 
-export const useBeersStore = create<BeersState>(
+export const useBeersStore = create<BeersState>()(
   persist(
     devtools(set => ({
       beers: [],
@@ -97,7 +97,6 @@ export const useBeersStore = create<BeersState>(
     })),
     {
       name: 'beers',
-      version: 1,
     }
   )
 );
