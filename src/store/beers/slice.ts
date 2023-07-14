@@ -126,7 +126,9 @@ export const useBeersStore = create<BeersState>()(
     {
       name: 'beers-storage',
       onRehydrateStorage: () => state => {
-        state.setHasHydrated(true);
+        if (state) {
+          state.setHasHydrated(true);
+        }
       },
     }
   )
