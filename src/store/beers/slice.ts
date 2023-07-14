@@ -56,10 +56,14 @@ export const useBeersStore = create<BeersState>()(
     },
     setVisibleBeers: () => {
       set(state => {
+        const isSequentialIds = state.beers.every((beer, index) => beer.id === index + 1);
         const lastBeerIndex = state.beers.findIndex(beer => beer.id === state.lastBeerId);
         const startIndex = lastBeerIndex === -1 ? 0 : lastBeerIndex + 1;
         const endIndex = startIndex + 5;
-        const newVisibleBeers = state.beers.slice(startIndex, endIndex);
+        const newVisibleBeers =
+          state.visibleBeers.length < 15 && !isSequentialIds
+            ? state.beers.slice(startIndex, startIndex + 15 - state.visibleBeers.length)
+            : state.beers.slice(startIndex, endIndex);
         return {
           visibleBeers:
             state.visibleBeers.length === 15

@@ -16,6 +16,7 @@ const BeersItem: FC<BeersItemProps> = forwardRef(function BeersItem(
   ref: ForwardedRef<HTMLLIElement>
 ) {
   const selectedBeers = useBeersStore(selectSelectedBeers);
+
   const toggleBeer = useBeersStore(selectToggleBeer);
 
   const areAnyBeersSelected = selectedBeers.some(beerId => beerId === id);

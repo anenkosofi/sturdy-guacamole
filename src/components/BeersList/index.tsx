@@ -47,7 +47,7 @@ const BeersList: FC = () => {
   }, [inView]);
 
   useEffect(() => {
-    if (beers.length && lastBeerId >= beers[beers.length - 1].id) {
+    if (lastBeerId && lastBeerId >= beers[beers.length - 1].id) {
       setPage(page + 1);
     }
   }, [lastBeerId]);
