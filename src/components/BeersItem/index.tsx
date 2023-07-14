@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef, ForwardedRef, RefAttributes } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { useBeersStore } from '@store/beers/slice';
@@ -9,11 +9,12 @@ import './BeersItem.scss';
 
 type BeersItemProps = {
   beer: Beer;
-};
+} & RefAttributes<HTMLLIElement>;
 
-const BeersItem: FC<BeersItemProps> = ({
-  beer: { id, name, tagline, first_brewed, description },
-}) => {
+const BeersItem: FC<BeersItemProps> = forwardRef(function BeersItem(
+  { beer: { id, name, tagline, first_brewed, description } }: BeersItemProps,
+  ref: ForwardedRef<HTMLLIElement>
+) {
   const selectedBeers = useBeersStore(selectSelectedBeers);
   const toggleBeer = useBeersStore(selectToggleBeer);
 
@@ -25,7 +26,10 @@ const BeersItem: FC<BeersItemProps> = ({
   };
 
   return (
-    <li className={areAnyBeersSelected ? 'beers__item beers__item_selected' : 'beers__item'}>
+    <li
+      className={areAnyBeersSelected ? 'beers__item beers__item_selected' : 'beers__item'}
+      ref={ref}
+    >
       <NavLink to={`${id}`} className="beers__link" onContextMenu={selectBeerHandler}>
         <h2 className="beers__heading">{name}</h2>
         <p className="beers__tag">#{tagline}</p>
@@ -36,6 +40,6 @@ const BeersItem: FC<BeersItemProps> = ({
       </NavLink>
     </li>
   );
-};
+});
 
 export default BeersItem;

@@ -7,17 +7,19 @@ import {
   selectGetBeers,
   selectSelectedBeers,
   selectDeleteSelectedBeers,
+  selectPage,
 } from '@store/beers/selectors';
 
 const Beers: FC = () => {
+  const selectedBeers = useBeersStore(selectSelectedBeers);
+  const page = useBeersStore(selectPage);
+
   const getBeers = useBeersStore(selectGetBeers);
   const deleteSelectedBeers = useBeersStore(selectDeleteSelectedBeers);
 
-  const selectedBeers = useBeersStore(selectSelectedBeers);
-
   useEffect(() => {
     getBeers();
-  }, []);
+  }, [page]);
 
   const deleteSelectedBeersHandler = () => deleteSelectedBeers();
 
