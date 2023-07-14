@@ -57,9 +57,7 @@ const BeersList: FC = () => {
   }, [lastBeerId]);
 
   useEffect(() => {
-    if (visibleBeers.length) {
-      setIsInitialRender(false);
-    }
+    setIsInitialRender(false);
   }, []);
 
   return (
