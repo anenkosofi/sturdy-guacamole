@@ -18,8 +18,6 @@ const Beers: FC = () => {
   const page = useBeersStore(selectPage);
   const isLoading = useBeersStore(selectIsLoading);
 
-  const hasHydrated = useBeersStore.persist.hasHydrated();
-
   const getBeers = useBeersStore(selectGetBeers);
   const deleteSelectedBeers = useBeersStore(selectDeleteSelectedBeers);
   const setVisibleBeers = useBeersStore(selectSetVisibleBeers);
@@ -32,10 +30,6 @@ const Beers: FC = () => {
     deleteSelectedBeers();
     setVisibleBeers();
   };
-
-  if (!hasHydrated) {
-    return <Loader />;
-  }
 
   return (
     <section className="beers">

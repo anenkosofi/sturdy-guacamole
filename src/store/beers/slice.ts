@@ -117,6 +117,7 @@ export const useBeersStore = create<BeersState>()(
     })),
     {
       name: 'beers-storage',
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
