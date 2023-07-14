@@ -44,7 +44,7 @@ export const useBeersStore = create<BeersState>()(
     deleteSelectedBeers: () => {
       set(state => ({
         beers: state.beers.filter(({ id }) => !state.selectedBeers.includes(id)),
-        visibleBeerseers: state.visibleBeers.filter(({ id }) => !state.selectedBeers.includes(id)),
+        visibleBeers: state.visibleBeers.filter(({ id }) => !state.selectedBeers.includes(id)),
         selectedBeers: [],
       }));
     },
